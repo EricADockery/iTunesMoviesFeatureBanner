@@ -14,16 +14,8 @@ class FeaturedView: UIView {
 
     var presenter: FeaturedViewPresenter?
 
-    var firstLoad = true
-
-
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         collectionView.remembersLastFocusedIndexPath = true
-        if firstLoad {
-            firstLoad = false
-            collectionView.scrollToItem(at: IndexPath(item: 8, section: 0), at: .centeredHorizontally, animated: false)
-            return
-        }
         if let nextFocusView = context.nextFocusedView as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: nextFocusView) {
             collectionView.isScrollEnabled = false
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
